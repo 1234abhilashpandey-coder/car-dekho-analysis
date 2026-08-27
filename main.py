@@ -3,52 +3,56 @@ import pandas as pd
 # Load data
 df = pd.read_csv('data/car_data.csv')
 
-# Sanity check first
-print(df.shape)
+# --- Sanity check ---
+print("Shape:", df.shape)
 print(df.info())
-df.head()
+print(df.head())
+print("\n" + "="*50 + "\n")
 
 # Q1. Manufacturing year range
-print("Earliest year:", df['Year'].min())
-print("Latest year:", df['Year'].max())
+print("Q1. Earliest year:", df['Year'].min())
+print("Q1. Latest year:", df['Year'].max())
 
 # Q2. Lowest selling price
-print("Lowest selling price:", df['Selling_Price'].min())
+print("\nQ2. Lowest selling price:", df['Selling_Price'].min())
 
 # Q3. Highest selling price
-print("Highest selling price:", df['Selling_Price'].max())
+print("Q3. Highest selling price:", df['Selling_Price'].max())
 
 # Q4. Number of records
-print("Total records:", df.shape[0])
+print("\nQ4. Total records:", len(df))
 
 # Q5. Missing values check
+print("\nQ5. Missing values per column:")
 print(df.isnull().sum())
-print("Total missing values:", df.isnull().sum().sum())
+print("Q5. Total missing values:", df.isnull().sum().sum())
 
 # Q6. Number of unique vehicles
-print("Unique vehicles:", df['Car_Name'].nunique())
+print("\nQ6. Unique vehicles:", df['Car_Name'].nunique())
 
 # Q7. Most sold vehicle
+print("\nQ7. Top 10 most listed vehicles:")
 print(df['Car_Name'].value_counts().head(10))
-print("Most listed vehicle:", df['Car_Name'].value_counts().idxmax())
+print("Q7. Most listed vehicle:", df['Car_Name'].value_counts().idxmax())
 
 # Q8. CNG vehicles
-print(df['Fuel_Type'].unique())  # check exact spelling first
+print("\nQ8. Fuel types present:", df['Fuel_Type'].unique())
 cng_count = (df['Fuel_Type'] == 'CNG').sum()
-print("CNG vehicles:", cng_count)
+print("Q8. CNG vehicles:", cng_count)
 
 # Q9. Vehicles sold by individuals directly
-print(df['Seller_Type'].unique())  # check exact spelling first
+print("\nQ9. Seller types present:", df['Seller_Type'].unique())
 individual_count = (df['Seller_Type'] == 'Individual').sum()
-print("Individual sellers:", individual_count)
+print("Q9. Individual sellers:", individual_count)
 
 # Q10. Automatic transmission vehicles
-print(df['Transmission'].unique())  # check exact spelling first
+print("\nQ10. Transmission types present:", df['Transmission'].unique())
 auto_count = (df['Transmission'] == 'Automatic').sum()
-print("Automatic transmission vehicles:", auto_count)
+print("Q10. Automatic transmission vehicles:", auto_count)
 
 # Q11. Single-owner vehicles
-print(df['Owner'].unique())         # see what values exist (0, 1, 3 etc.)
-print(df['Owner'].value_counts())   # see distribution
+print("\nQ11. Owner values present:", df['Owner'].unique())
+print("Q11. Owner value distribution:")
+print(df['Owner'].value_counts())
 single_owner_count = (df['Owner'] == 0).sum()
-print("Single-owner vehicles:", single_owner_count)
+print("Q11. Single-owner vehicles:", single_owner_count)
