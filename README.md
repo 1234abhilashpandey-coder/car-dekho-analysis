@@ -17,8 +17,6 @@ car-dekho-analysis/
 ├── data/
 │   └── car_data.csv          # Raw dataset (301 records, 9 columns)
 ├── main.py                   # Full analysis script, organized by checkpoint
-├── outputs/                  # Charts/exports (if any)
-├── Car_Dekho_Presentation.pptx
 └── README.md
 ```
 
