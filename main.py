@@ -1,4 +1,3 @@
-pip install pandas
 import pandas as pd
 
 # Load data
@@ -57,3 +56,36 @@ print("Q11. Owner value distribution:")
 print(df['Owner'].value_counts())
 single_owner_count = (df['Owner'] == 0).sum()
 print("Q11. Single-owner vehicles:", single_owner_count)
+
+# Create depreciation columns
+df['Depreciation'] = df['Present_Price'] - df['Selling_Price']
+df['Depreciation_Pct'] = (df['Depreciation'] / df['Present_Price']) * 100
+
+# Q12. Most and least cost depreciated vehicle
+print("\nQ12. Most depreciated vehicle (absolute):")
+print(df.loc[df['Depreciation'].idxmax(), ['Car_Name','Year','Present_Price','Selling_Price','Depreciation']])
+
+print("\nQ12. Least depreciated vehicle (absolute):")
+print(df.loc[df['Depreciation'].idxmin(), ['Car_Name','Year','Present_Price','Selling_Price','Depreciation']])
+
+# Q13. Brands less affected by depreciation
+# Extract brand as first word of Car_Name (works reasonably for this dataset)
+df['Brand'] = df['Car_Name'].apply(lambda x: x.split()[0])
+brand_depreciation = df.groupby('Brand')['Depreciation_Pct'].mean().sort_values()
+print("\nQ13. Average % depreciation by brand (lowest = least affected):")
+print(brand_depreciation)
+
+# Q14. Correlation to explore factors affecting depreciation
+print("\nQ14. Correlation of numeric features with Depreciation_Pct:")
+numeric_cols = ['Year','Kms_Driven','Owner','Present_Price','Depreciation_Pct']
+print(df[numeric_cols].corr()['Depreciation_Pct'].sort_values(ascending=False))
+
+# Q15. Does selling price correlate with age and kms driven?
+df['Age'] = 2018 - df['Year']  # dataset's latest year as reference
+print("\nQ15. Correlation of Selling_Price with Age and Kms_Driven:")
+print(df[['Selling_Price','Age','Kms_Driven']].corr()['Selling_Price'])
+
+# Q16. Vehicles manufactured after 2014
+newest = df[df['Year'] > 2014]
+print(f"\nQ16. Vehicles manufactured after 2014: {len(newest)}")
+print(newest[['Car_Name','Year','Selling_Price']].sort_values('Year'))
