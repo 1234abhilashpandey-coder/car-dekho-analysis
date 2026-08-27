@@ -90,10 +90,6 @@ newest = df[df['Year'] > 2014]
 print(f"\nQ16. Vehicles manufactured after 2014: {len(newest)}")
 print(newest[['Car_Name','Year','Selling_Price']].sort_values('Year'))
 
-print("\n" + "="*50)
-print("CHECKPOINT 3: Two-Wheeler Analysis")
-print("="*50)
-
 # Derive vehicle type from naming convention
 df['Vehicle_Type'] = df['Car_Name'].apply(lambda x: 'Bike' if x[0].isupper() else 'Car')
 print("\nVehicle type counts:")
