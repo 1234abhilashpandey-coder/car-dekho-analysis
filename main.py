@@ -89,3 +89,44 @@ print(df[['Selling_Price','Age','Kms_Driven']].corr()['Selling_Price'])
 newest = df[df['Year'] > 2014]
 print(f"\nQ16. Vehicles manufactured after 2014: {len(newest)}")
 print(newest[['Car_Name','Year','Selling_Price']].sort_values('Year'))
+
+print("\n" + "="*50)
+print("CHECKPOINT 3: Two-Wheeler Analysis")
+print("="*50)
+
+# Derive vehicle type from naming convention
+df['Vehicle_Type'] = df['Car_Name'].apply(lambda x: 'Bike' if x[0].isupper() else 'Car')
+print("\nVehicle type counts:")
+print(df['Vehicle_Type'].value_counts())
+
+# Q17. Data of only two-wheelers
+bikes = df[df['Vehicle_Type'] == 'Bike']
+print(f"\nQ17. Two-wheeler records: {len(bikes)}")
+print(bikes[['Car_Name','Year','Selling_Price']].head(10))
+
+# Q18. Oldest bike sold
+oldest_bike = bikes.loc[bikes['Year'].idxmin()]
+print("\nQ18. Oldest bike sold:")
+print(oldest_bike[['Car_Name','Year','Selling_Price']])
+
+# Q19. Newest bike sold
+newest_bike = bikes.loc[bikes['Year'].idxmax()]
+print("\nQ19. Newest bike sold:")
+print(newest_bike[['Car_Name','Year','Selling_Price']])
+
+# Q20. Most sold bike
+print("\nQ20. Most listed bike model:")
+print(bikes['Car_Name'].value_counts().head(5))
+
+# Q21. Deals that exceeded general expectation (unusual selling price relative to present price)
+bikes = bikes.copy()
+bikes['Price_Ratio'] = bikes['Selling_Price'] / bikes['Present_Price']
+print("\nQ21. Bike price ratio (Selling/Present) stats:")
+print(bikes['Price_Ratio'].describe())
+
+# Flag bikes that sold for unusually HIGH relative price (good deal for seller / high demand)
+# using > mean + 1 std as a simple outlier threshold
+threshold_high = bikes['Price_Ratio'].mean() + bikes['Price_Ratio'].std()
+good_deals = bikes[bikes['Price_Ratio'] > threshold_high].sort_values('Price_Ratio', ascending=False)
+print(f"\nQ21. Bikes selling above expectation (ratio > {threshold_high:.2f}):")
+print(good_deals[['Car_Name','Year','Present_Price','Selling_Price','Price_Ratio']])
