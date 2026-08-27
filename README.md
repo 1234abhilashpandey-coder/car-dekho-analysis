@@ -3,7 +3,9 @@
 A data analysis case study on a used-vehicle listings dataset (Car Dekho). The dataset is provided as a CSV file, and the project answers 25 business questions covering data quality, pricing, depreciation trends, and vehicle-type-specific insights (two-wheelers vs. cars).
 
 **Author:** Abhilash Pandey
+
 **AICTE STU ID:** STU6a2ae770771891781196656
+
 **Repo:** https://github.com/1234abhilashpandey-coder/car-dekho-analysis
 
 ---
