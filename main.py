@@ -126,3 +126,30 @@ threshold_high = bikes['Price_Ratio'].mean() + bikes['Price_Ratio'].std()
 good_deals = bikes[bikes['Price_Ratio'] > threshold_high].sort_values('Price_Ratio', ascending=False)
 print(f"\nQ21. Bikes selling above expectation (ratio > {threshold_high:.2f}):")
 print(good_deals[['Car_Name','Year','Present_Price','Selling_Price','Price_Ratio']])
+
+
+cars = df[df['Vehicle_Type'] == 'Car'].copy()
+
+# Q22. Data of only cars
+print(f"\nQ22. Car records: {len(cars)}")
+print(cars[['Car_Name','Year','Selling_Price']].head(10))
+
+# Q23. Oldest car sold
+oldest_car = cars.loc[cars['Year'].idxmin()]
+print("\nQ23. Oldest car sold:")
+print(oldest_car[['Car_Name','Year','Selling_Price']])
+
+# Q24. Newest car sold
+newest_car = cars.loc[cars['Year'].idxmax()]
+print("\nQ24. Newest car sold:")
+print(newest_car[['Car_Name','Year','Selling_Price']])
+
+# Q25. Car deals that exceeded general expectation
+cars['Price_Ratio'] = cars['Selling_Price'] / cars['Present_Price']
+print("\nQ25. Car price ratio (Selling/Present) stats:")
+print(cars['Price_Ratio'].describe())
+
+threshold_high_car = cars['Price_Ratio'].mean() + cars['Price_Ratio'].std()
+good_deals_car = cars[cars['Price_Ratio'] > threshold_high_car].sort_values('Price_Ratio', ascending=False)
+print(f"\nQ25. Cars selling above expectation (ratio > {threshold_high_car:.2f}):")
+print(good_deals_car[['Car_Name','Year','Present_Price','Selling_Price','Price_Ratio','Kms_Driven','Owner']])
