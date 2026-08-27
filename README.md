@@ -47,6 +47,7 @@ python main.py
 ## Questions Answered
 
 **Data Understanding**
+
 1. From which manufacturing year to which manufacturing year are vehicles present in this data?
 2. What is the lowest price at which a vehicle is sold?
 3. What is the highest price at which a vehicle is sold?
@@ -60,6 +61,7 @@ python main.py
 11. How many single-person-owned vehicles are there in this database?
 
 **Depreciation & Pricing Patterns**
+
 12. Which is the most and least cost-depreciated vehicle in the data?
 13. Which brands of vehicles are less affected by cost depreciation?
 14. Are there any factors that affect cost depreciation?
@@ -67,6 +69,7 @@ python main.py
 16. Can we get an idea about the newest vehicles (manufactured after 2014)?
 
 **Two-Wheeler Analysis**
+
 17. Can we find data of only two-wheelers from this data?
 18. Which is the oldest bike sold here?
 19. Which is the newest bike sold here?
@@ -74,6 +77,7 @@ python main.py
 21. Do you find any deal in two-wheelers that exceeded the general expectation? Can you find a reason for it?
 
 **Car Analysis**
+
 22. Can we find data of only cars from this data?
 23. Which is the oldest car sold here?
 24. Which is the newest car sold here?
